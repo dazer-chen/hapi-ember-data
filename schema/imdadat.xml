@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Document created by: Yasir Hantoush, Mango MAS -->
+<mappings>
+
+	<!-- Lookup Tables -->
+	<class name="Allergy" plural="allergies">
+		<field name="allergyId" 	type="int" 		notNull="true" primaryKey="true" autoIncrement="true"></field>
+		<field name="allergyName" 	type="string" 	notNull="true" size="100"></field>
+	</class>
+	<class name="HealthCondition" plural="healthConditions">
+		<field name="healthConditionId" 		type="int" 		notNull="true" primaryKey="true" autoIncrement="true"></field>
+		<field name="healthConditionName" 	type="string" 	notNull="true" size="100"></field>
+	</class>
+	<class name="Drug" plural="drugs">
+		<field name="drugId" 		type="int" 		notNull="true" primaryKey="true" autoIncrement="true"></field>
+		<field name="drugName" 		type="string" 	notNull="true" size="200" searchable="true" filterable="true"></field>
+		<field name="genericName" 	type="string" 	size="200" searchable="true" filterable="true"></field>
+		<field name="pack" 			type="string" 	size="100" ></field>
+		<field name="origin" 		type="string" 	size="100" ></field>
+		<field name="manufacture" 	type="string" 	size="200" searchable="true" filterable="true"></field>
+		<field name="agent" 		type="string" 	size="200" filterable="true"></field>
+		<field name="category" 		type="string" 	size="200" searchable="true" filterable="true"></field>
+		<field name="balance" 		type="string" 	size="200" ></field>
+		<field name="unit" 			type="string" 	size="200" ></field>
+		<field name="price" 		type="string" 	size="200" ></field>
+		<field name="location" 		type="string" 	size="200" ></field>
+	</class>
+	<class name="HgUser" plural="hgUsers">
+		<field name="userId" 		type="int" notNull="true" primaryKey="true" autoIncrement="true"></field>
+		<field name="username" 		type="string" notNull="true" size="64"></field>
+		<field name="password" 		type="string" notNull="true" size="64"></field>
+		<field name="email" 		type="string" notNull="true" size="100"></field>
+	</class>
+
+	<!-- Patient Table -->
+	<class name="Patient" plural="patients">
+		<field name="patientId"		type="int" 	  primaryKey="true" autoIncrement="true"></field>
+		<field name="fullname"		type="string" notNull="true" size="250" searchable="true" filterable="true"></field>
+		<field name="phoneNo"		type="string" size="50" notNull="false" searchable="true" filterable="true"></field>
+		<field name="email"			type="string" size="250" searchable="true" filterable="true"></field>
+		<field name="address" 		type="string" size="250" searchable="true" filterable="true"></field>
+		<field name="nationalNo"	type="string" size="50"  searchable="true" filterable="true"></field>
+		<field name="gender" 		type="string" size="50" searchable="true" filterable="true"></field>
+		<field name="age" 			type="string" size="250" ></field>
+		<field name="createdAt"		type="datetime" notNull="true" insert="false" update="false"></field>
+		<field name="flag" 			type="int"/>
+		<field name="vitamins" 		type="int"/>
+		<field name="herbals" 		type="int"/>
+		<field name="testBloodPressure" 	type="string" size="100"/>
+		<field name="testGlucose" 			type="string" size="100"/>
+		<field name="notes" 				type="string" size="250"/>
+		<one  name="createdBy"		type="int"    refTable="HgUser" refColumn="userId"></one>
+		<many name="allergies" 			class="Allergy" 		through="PatientAllergy" 			localField="patientId" throughLocalField="patientId" throughForiegnField="allergyId" 			foriegnField="allergyId" />
+		<many name="healthConditions" 	class="HealthCondition" through="PatientHealthCondition" 	localField="patientId" throughLocalField="patientId" throughForiegnField="healthConditionId" 	foriegnField="healthConditionId" />
+		<many name="drugs" 				class="Drug" 			through="PatientDrug" 				localField="patientId" throughLocalField="patientId" throughForiegnField="drugId" 				foriegnField="drugId" />
+	</class>
+
+	<!-- patient links -->
+	<class name="PatientAllergy" plural="patientAllergies">
+		<field name="patientAllergyId" 	type="int" 	notNull="true" primaryKey="true" autoIncrement="true"></field>
+		<one   name="patientId" 		type="int"    refTable="Patient" refColumn="patientId"></one>
+		<one   name="allergyId" 		type="int"    refTable="Allergy" refColumn="allergyId"></one>
+	</class>
+
+	<class name="PatientHealthCondition" plural="patientConditions">
+		<field name="patientHealthConditionId" 	type="int" notNull="true" primaryKey="true" autoIncrement="true"></field>
+		<one   name="patientId" 				type="int"    refTable="Patient" refColumn="patientId"></one>
+		<one   name="healthConditionId" 		type="int"    refTable="HealthCondition" refColumn="healthConditionId"></one>
+	</class>
+
+	<class name="PatientDrug" plural="patientDrugs">
+		<field name="patientDrugId" type="int" notNull="true" primaryKey="true" autoIncrement="true"></field>
+		<one   name="patientId" 	type="int"    refTable="Patient" refColumn="patientId"></one>
+		<one   name="drugId" 		type="int"    refTable="Drug" refColumn="drugId"></one>
+	</class>
+</mappings>

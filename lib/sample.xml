@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Document created by: Yasir -->
+<mappings>
+	<class name="Category" plural="categories">
+		<field name="categoryName" 			column="account_id" 		type="int" notNull="true" size="11" primaryKey="true" autoIncrement="true"/>
+		<field name="categoryDescription" 	column="entity_type_id" 	type="int" notNull="false" size="11"/>
+	</class>
+	<class name="Item" plural="items">
+		<field name="itemNo" 		column="account_type_id" type="int" notNull="true" size="11" primaryKey="true" autoIncrement="true"/>
+		<field name="itemName" 		column="account_type_name" type="string" notNull="false" size="145"/>
+		<field name="unit" 			column="balance_type" type="string" notNull="false" size="45"/>
+		<field name="price" 		column="balance_type" type="string" notNull="false" size="45"/>
+	</class>
+	<class name="User" plural="users">
+		<field name="username" 		column="voucher_id" type="int" notNull="true" size="11" primaryKey="true" autoIncrement="true"/>
+		<field name="email" 		column="doc_date" type="DATETIME" notNull="false" size="0"/>
+		<field name="password" 		column="doc_no" type="string" notNull="false" size="45"/>
+		<field name="createdAt" 	column="memo" type="string" notNull="false" size="245"/>
+		<field name="isActive" 		column="flag" type="int" notNull="true" size="11"/>
+		<field name="isSuperAdmin" 	column="flag" type="int" notNull="true" size="11"/>
+	</class>
+	<class name="Invoice" plural="invoices">
+		<field name="invoiceNo"		column="voucher_detail_id" type="int" notNull="true" size="11" primaryKey="true" autoIncrement="true"/>
+		<field name="invoiceDate" 	column="account_path" type="string" notNull="false" size="45"/>
+		<field name="memo" 			column="debit" type="float" notNull="false" size="0"/>
+		<field name="createdAt" 	column="credit" type="float" notNull="false" size="0"/>
+		<one name="createdBy" 		column="voucher_id" type="int" notNull="false" size="11" refTable="voucher" refColumn="voucher_id"/>
+		<field name="updatedAt" 	column="flag" type="int" notNull="true" size="11"/>
+		<one name="updatedBy" 		column="account_id" type="int" notNull="false" size="11" refTable="account" refColumn="account_id"/>
+	</class>
+	<class name="InvoiceLine" plural="invoiceLines">
+		<field name="invoice" 		column="voucher_detail_id" type="int" notNull="true" size="11" primaryKey="true" autoIncrement="true"/>
+		<field name="qty" 			column="debit" type="float" notNull="false" size="0"/>
+		<field name="price" 		column="credit" type="float" notNull="false" size="0"/>
+		<field name="lineTotal" 	column="credit" type="float" notNull="false" size="0"/>
+	</class>
+</mappings>

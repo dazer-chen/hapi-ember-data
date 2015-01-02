@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Document created by: Yasir, Mango Massss -->
+<mappings>
+	<class name="Account" table="account">
+		<field name="accountId" column="account_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="entityTypeId" column="entity_type_id" type="0" notNull="false" size="11" />
+		<field name="accountNo" column="account_no" type="2" notNull="true" size="45" />
+		<field name="accountName" column="account_name" type="2" notNull="true" size="45" />
+		<field name="accountPath" column="account_path" type="2" notNull="true" size="45" />
+		<field name="balanceDebit" column="balance_debit" type="7" notNull="false" size="0" />
+		<field name="balanceCredit" column="balance_credit" type="7" notNull="false" size="0" />
+		<field name="totalDebit" column="total_debit" type="7" notNull="false" size="0" />
+		<field name="totalCredit" column="total_credit" type="7" notNull="false" size="0" />
+		<field name="totalBalance" column="total_balance" type="7" notNull="false" size="0" />
+		<field name="note" column="note" type="6" notNull="false" size="0" />
+		<field name="flag" column="flag" type="0" notNull="true" size="11" />
+		<one name="accountType" column="account_type_id" type="0" notNull="false" size="11" refTable="account_type" refColumn="account_type_id" />
+	</class>
+	<class name="AccountLink" table="account_link">
+		<field name="accountLinkId" column="account_link_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="linkName" column="link_name" type="2" notNull="false" size="45" />
+		<field name="linkTitle" column="link_title" type="2" notNull="false" size="105" />
+		<field name="linkDesc" column="link_desc" type="2" notNull="false" size="255" />
+		<field name="accountId" column="account_id" type="0" notNull="false" size="11" />
+	</class>
+	<class name="AccountType" table="account_type">
+		<field name="accountTypeId" column="account_type_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="accountTypeName" column="account_type_name" type="2" notNull="false" size="145" />
+		<field name="balanceType" column="balance_type" type="2" notNull="false" size="45" />
+	</class>
+	<class name="CheckDetail" table="check_detail">
+		<field name="paymentDetailId" column="payment_detail_id" type="0" notNull="true" size="11" primaryKey="true" />
+		<field name="checkDate" column="check_date" type="1" notNull="false" size="0" />
+		<field name="checkNo" column="check_no" type="2" notNull="false" size="45" />
+		<field name="bankName" column="bank_name" type="2" notNull="false" size="145" />
+		<field name="branchName" column="branch_name" type="2" notNull="false" size="145" />
+		<field name="payTo" column="pay_to" type="2" notNull="false" size="245" />
+		<field name="submitDate" column="submit_date" type="1" notNull="false" size="0" />
+	</class>
+	<class name="DimDate" table="dim_date">
+		<field name="dateKey" column="date_key" type="0" notNull="true" size="11" primaryKey="true" />
+		<field name="dateValue" column="date_value" type="1" notNull="false" size="0" />
+		<field name="dateIso" column="date_iso" type="5" notNull="false" size="10" />
+		<field name="year" column="year" type="0" notNull="false" size="6" />
+		<field name="quarter" column="quarter" type="0" notNull="false" size="4" />
+		<field name="quarterName" column="quarter_name" type="5" notNull="false" size="2" />
+		<field name="month" column="month" type="0" notNull="false" size="4" />
+		<field name="monthName" column="month_name" type="2" notNull="false" size="10" />
+		<field name="monthAbbreviation" column="month_abbreviation" type="2" notNull="false" size="10" />
+		<field name="week" column="week" type="5" notNull="false" size="2" />
+		<field name="dayOfMonth" column="day_of_month" type="0" notNull="false" size="4" />
+		<field name="dayOfYear" column="day_of_year" type="0" notNull="false" size="6" />
+		<field name="dayOfWeek" column="day_of_week" type="0" notNull="false" size="6" />
+		<field name="dayName" column="day_name" type="2" notNull="false" size="10" />
+		<field name="dayAbbreviation" column="day_abbreviation" type="2" notNull="false" size="10" />
+		<field name="isWeekend" column="is_weekend" type="0" notNull="false" size="4" />
+		<field name="isWeekday" column="is_weekday" type="0" notNull="false" size="4" />
+		<field name="isToday" column="is_today" type="0" notNull="false" size="4" />
+		<field name="isYesterday" column="is_yesterday" type="0" notNull="false" size="4" />
+		<field name="isThisWeek" column="is_this_week" type="0" notNull="false" size="4" />
+		<field name="isLastWeek" column="is_last_week" type="0" notNull="false" size="4" />
+		<field name="isThisMonth" column="is_this_month" type="0" notNull="false" size="4" />
+		<field name="isLastMonth" column="is_last_month" type="0" notNull="false" size="4" />
+		<field name="isThisYear" column="is_this_year" type="0" notNull="false" size="4" />
+		<field name="isLastYear" column="is_last_year" type="0" notNull="false" size="4" />
+	</class>
+	<class name="HgAddress" table="hg_address">
+		<field name="addressId" column="address_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="entityTypeId" column="entity_type_id" type="0" notNull="false" size="11" />
+		<field name="entityId" column="entity_id" type="0" notNull="false" size="11" />
+		<field name="fullName" column="full_name" type="2" notNull="false" size="50" />
+		<field name="phone" column="phone" type="2" notNull="false" size="45" />
+		<field name="email" column="email" type="2" notNull="false" size="100" />
+		<field name="address" column="address" type="2" notNull="false" size="255" />
+	</class>
+	<class name="HgEntityNote" table="hg_entity_note">
+		<field name="entityNoteId" column="entity_note_id" type="0" notNull="true" size="11" primaryKey="true" />
+		<field name="entityTypeId" column="entity_type_id" type="0" notNull="false" size="11" />
+		<field name="entityId" column="entity_id" type="0" notNull="false" size="11" />
+		<field name="memo" column="memo" type="2" notNull="false" size="255" />
+		<field name="createdBy" column="created_by" type="0" notNull="false" size="11" />
+		<field name="createdAt" column="created_at" type="4" notNull="false" size="0" />
+	</class>
+	<class name="HgEntityTag" table="hg_entity_tag">
+		<field name="entityTagId" column="entity_tag_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="tagId" column="tag_id" type="0" notNull="false" size="11" />
+		<field name="entityTypeId" column="entity_type_id" type="0" notNull="false" size="11" />
+		<field name="entityId" column="entity_id" type="0" notNull="false" size="11" />
+	</class>
+	<class name="HgEntityType" table="hg_entity_type">
+		<field name="entityTypeId" column="entity_type_id" type="0" notNull="true" size="11" primaryKey="true" />
+		<field name="entityTypeName" column="entity_type_name" type="2" notNull="false" size="45" />
+		<field name="moduleName" column="module_name" type="2" notNull="false" size="45" />
+		<field name="tableName" column="table_name" type="2" notNull="false" size="45" />
+		<field name="primaryKey" column="primary_key" type="2" notNull="false" size="45" />
+		<field name="secondaryKey" column="secondary_key" type="2" notNull="false" size="45" />
+		<field name="secondaryValue" column="secondary_value" type="0" notNull="false" size="11" />
+		<field name="defaultFormName" column="default_form_name" type="2" notNull="false" size="45" />
+		<field name="displayName" column="display_name" type="2" notNull="false" size="45" />
+		<field name="displayNameAr" column="display_name_ar" type="2" notNull="false" size="45" />
+	</class>
+	<class name="HgFlag" table="hg_flag">
+		<field name="flagId" column="flag_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="moduleName" column="module_name" type="2" notNull="false" size="45" />
+		<field name="entityTypeName" column="entity_type_name" type="2" notNull="false" size="45" />
+		<field name="flagName" column="flag_name" type="2" notNull="false" size="45" />
+		<field name="flagPosition" column="flag_position" type="0" notNull="false" size="11" />
+		<field name="desc" column="desc" type="2" notNull="false" size="255" />
+	</class>
+	<class name="HgForm" table="hg_form">
+		<field name="formId" column="form_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="moduleName" column="module_name" type="2" notNull="false" size="45" />
+		<field name="formName" column="form_name" type="2" notNull="true" size="45" />
+		<field name="formTitle" column="form_title" type="2" notNull="false" size="245" />
+		<field name="formTitleAr" column="form_title_ar" type="2" notNull="false" size="245" />
+		<field name="formVersion" column="form_version" type="2" notNull="false" size="20" />
+	</class>
+	<class name="HgGroup" table="hg_group">
+		<field name="groupId" column="group_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="groupName" column="group_name" type="2" notNull="false" size="45" />
+		<field name="flags" column="flags" type="0" notNull="false" size="11" />
+	</class>
+	<class name="HgGroupPermission" table="hg_group_permission">
+		<field name="groupPermissionId" column="group_permission_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="groupId" column="group_id" type="0" notNull="false" size="11" />
+		<field name="permissionId" column="permission_id" type="0" notNull="false" size="11" />
+		<field name="flag" column="flag" type="0" notNull="false" size="11" />
+	</class>
+	<class name="HgIcon" table="hg_icon">
+		<field name="iconId" column="icon_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="moduleName" column="module_name" type="2" notNull="false" size="45" />
+		<field name="tableName" column="table_name" type="2" notNull="false" size="45" />
+		<field name="iconKey" column="icon_key" type="2" notNull="false" size="45" />
+		<field name="iconPath" column="icon_path" type="2" notNull="false" size="100" />
+	</class>
+	<class name="HgLog" table="hg_log">
+		<field name="logId" column="log_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="userId" column="user_id" type="0" notNull="false" size="11" />
+		<field name="entityId" column="entity_id" type="0" notNull="false" size="11" />
+		<field name="entitiyTypeId" column="entitiy_type_id" type="0" notNull="false" size="11" />
+		<field name="ipAddress" column="ip_address" type="2" notNull="false" size="15" />
+		<field name="desc" column="desc" type="2" notNull="false" size="45" />
+		<field name="data" column="data" type="6" notNull="false" size="0" />
+		<field name="createdAt" column="created_at" type="4" notNull="false" size="0" />
+		<field name="flag" column="flag" type="0" notNull="false" size="4" />
+	</class>
+	<class name="HgModule" table="hg_module">
+		<field name="moduleId" column="module_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="moduleName" column="module_name" type="2" notNull="true" size="45" />
+		<field name="moduleVersion" column="module_version" type="2" notNull="false" size="20" />
+		<field name="moduleTitle" column="module_title" type="2" notNull="false" size="100" />
+		<field name="moduleTitleAr" column="module_title_ar" type="2" notNull="false" size="100" />
+		<field name="moduleDesc" column="module_desc" type="2" notNull="false" size="245" />
+		<field name="createdAt" column="created_at" type="4" notNull="false" size="0" />
+		<field name="updatedAt" column="updated_at" type="4" notNull="false" size="0" />
+	</class>
+	<class name="HgPermission" table="hg_permission">
+		<field name="permissionId" column="permission_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="moduleName" column="module_name" type="2" notNull="false" size="45" />
+		<field name="permissionName" column="permission_name" type="2" notNull="false" size="200" />
+		<field name="desc" column="desc" type="2" notNull="false" size="200" />
+		<field name="flag" column="flag" type="0" notNull="false" size="11" />
+	</class>
+	<class name="HgSerial" table="hg_serial">
+		<field name="serialId" column="serial_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="moduleName" column="module_name" type="2" notNull="false" size="45" />
+		<field name="serialName" column="serial_name" type="2" notNull="false" size="45" />
+		<field name="serialTitle" column="serial_title" type="2" notNull="false" size="45" />
+		<field name="prefix" column="prefix" type="2" notNull="false" size="10" />
+		<field name="nextId" column="next_id" type="0" notNull="false" size="11" />
+		<field name="serialLength" column="serial_length" type="0" notNull="false" size="11" />
+	</class>
+	<class name="HgSetting" table="hg_setting">
+		<field name="settingId" column="setting_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="userId" column="user_id" type="0" notNull="false" size="11" />
+		<field name="moduleName" column="module_name" type="2" notNull="false" size="45" />
+		<field name="key" column="key" type="2" notNull="true" size="200" />
+		<field name="type" column="type" type="2" notNull="false" size="45" />
+		<field name="value" column="value" type="6" notNull="false" size="0" />
+		<field name="displayName" column="display_name" type="2" notNull="false" size="45" />
+		<field name="desc" column="desc" type="2" notNull="false" size="200" />
+		<field name="flag" column="flag" type="0" notNull="false" size="11" />
+	</class>
+	<class name="HgTag" table="hg_tag">
+		<field name="tagId" column="tag_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="vocabularyId" column="vocabulary_id" type="0" notNull="false" size="11" />
+		<field name="tagName" column="tag_name" type="2" notNull="false" size="145" />
+		<field name="tagNameAr" column="tag_name_ar" type="2" notNull="false" size="145" />
+	</class>
+	<class name="HgUser" table="hg_user">
+		<field name="userId" column="user_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="accountId" column="account_id" type="0" notNull="false" size="11" />
+		<field name="groupId" column="group_id" type="0" notNull="false" size="11" />
+		<field name="username" column="username" type="2" notNull="false" size="45" />
+		<field name="password" column="password" type="2" notNull="false" size="45" />
+		<field name="fullName" column="full_name" type="2" notNull="false" size="245" />
+		<field name="email" column="email" type="2" notNull="false" size="145" />
+		<field name="phoneNo" column="phone_no" type="2" notNull="false" size="45" />
+		<field name="flag" column="flag" type="0" notNull="true" size="11" />
+	</class>
+	<class name="HgVocabulary" table="hg_vocabulary">
+		<field name="vocabularyId" column="vocabulary_id" type="0" notNull="true" size="11" primaryKey="true" />
+		<field name="vocabularyName" column="vocabulary_name" type="2" notNull="false" size="45" />
+		<field name="flag" column="flag" type="0" notNull="true" size="11" />
+	</class>
+	<class name="Invoice" table="invoice">
+		<field name="invoiceId" column="invoice_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="storeId" column="store_id" type="0" notNull="false" size="11" />
+		<field name="repId" column="rep_id" type="0" notNull="false" size="11" />
+		<field name="cashAccountId" column="cash_account_id" type="0" notNull="false" size="11" />
+		<field name="paymentTypeId" column="payment_type_id" type="0" notNull="false" size="11" />
+		<field name="docDate" column="doc_date" type="4" notNull="true" size="0" />
+		<field name="docNo" column="doc_no" type="2" notNull="true" size="15" />
+		<field name="memo" column="memo" type="2" notNull="false" size="255" />
+		<field name="customerName" column="customer_name" type="2" notNull="false" size="255" />
+		<field name="itemTotal" column="item_total" type="7" notNull="false" size="0" />
+		<field name="discountPer" column="discount_per" type="7" notNull="false" size="0" />
+		<field name="discountValue" column="discount_value" type="7" notNull="false" size="0" />
+		<field name="taxPer" column="tax_per" type="7" notNull="false" size="0" />
+		<field name="taxValue" column="tax_value" type="7" notNull="false" size="0" />
+		<field name="grandTotal" column="grand_total" type="7" notNull="false" size="0" />
+		<field name="cashPaid" column="cash_paid" type="7" notNull="false" size="0" />
+		<field name="createdAt" column="created_at" type="4" notNull="false" size="0" />
+		<field name="createdBy" column="created_by" type="0" notNull="false" size="11" />
+		<field name="updatedAt" column="updated_at" type="4" notNull="false" size="0" />
+		<field name="updatedBy" column="updated_by" type="0" notNull="false" size="11" />
+		<field name="flag" column="flag" type="0" notNull="true" size="11" />
+		<one name="hgEntityType" column="entity_type_id" type="0" notNull="true" size="11" refTable="hg_entity_type" refColumn="entity_type_id" />
+		<one name="account" column="account_id" type="0" notNull="true" size="11" refTable="account" refColumn="account_id" />
+	</class>
+	<class name="InvoiceDetail" table="invoice_detail">
+		<field name="invoiceDetailId" column="invoice_detail_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="qty" column="qty" type="7" notNull="false" size="0" />
+		<field name="unitId" column="unit_id" type="0" notNull="false" size="11" />
+		<field name="expiryDate" column="expiry_date" type="1" notNull="false" size="0" />
+		<field name="price" column="price" type="7" notNull="false" size="0" />
+		<field name="lineTotal" column="line_total" type="7" notNull="false" size="0" />
+		<field name="flag" column="flag" type="0" notNull="true" size="11" />
+		<one name="invoice" column="invoice_id" type="0" notNull="true" size="11" refTable="invoice" refColumn="invoice_id" />
+		<one name="item" column="item_id" type="0" notNull="true" size="11" refTable="item" refColumn="item_id" />
+	</class>
+	<class name="InvoicePayment" table="invoice_payment">
+		<field name="invoicePaymentId" column="invoice_payment_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="invoiceId" column="invoice_id" type="0" notNull="false" size="11" />
+		<field name="paymentId" column="payment_id" type="0" notNull="false" size="11" />
+		<field name="amount" column="amount" type="7" notNull="false" size="0" />
+		<field name="createdAt" column="created_at" type="4" notNull="false" size="0" />
+		<field name="createdBy" column="created_by" type="0" notNull="false" size="11" />
+	</class>
+	<class name="Item" table="item">
+		<field name="itemId" column="item_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="entityTypeId" column="entity_type_id" type="0" notNull="false" size="11" />
+		<field name="itemBrandId" column="item_brand_id" type="0" notNull="false" size="11" />
+		<field name="itemFormId" column="item_form_id" type="0" notNull="false" size="11" />
+		<field name="itemNo" column="item_no" type="2" notNull="true" size="45" />
+		<field name="itemName" column="item_name" type="2" notNull="true" size="255" />
+		<field name="itemDesc" column="item_desc" type="6" notNull="false" size="0" />
+		<field name="scientificName" column="scientific_name" type="2" notNull="false" size="145" />
+		<field name="itemPrice" column="item_price" type="7" notNull="false" size="0" />
+		<field name="purchasePrice" column="purchase_price" type="7" notNull="false" size="0" />
+		<field name="unitGroupId" column="unit_group_id" type="0" notNull="false" size="11" />
+		<field name="salesUnitId" column="sales_unit_id" type="0" notNull="false" size="11" />
+		<field name="purchaseUnitId" column="purchase_unit_id" type="0" notNull="false" size="11" />
+		<field name="stockUnitId" column="stock_unit_id" type="0" notNull="false" size="11" />
+		<field name="currentBalance" column="current_balance" type="7" notNull="false" size="0" />
+		<field name="minimumBalance" column="minimum_balance" type="7" notNull="false" size="0" />
+		<field name="maximumBalance" column="maximum_balance" type="7" notNull="false" size="0" />
+		<field name="flag" column="flag" type="0" notNull="true" size="11" />
+		<field name="createdAt" column="created_at" type="4" notNull="false" size="0" />
+		<field name="updatedAt" column="updated_at" type="4" notNull="false" size="0" />
+		<field name="updatedBy" column="updated_by" type="0" notNull="false" size="11" />
+		<one name="itemCategory" column="item_category_id" type="0" notNull="false" size="11" refTable="item_category" refColumn="item_category_id" />
+		<one name="hgUser" column="created_by" type="0" notNull="false" size="11" refTable="hg_user" refColumn="user_id" />
+	</class>
+	<class name="ItemBalance" table="item_balance">
+		<field name="itemBalanceId" column="item_balance_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="itemId" column="item_id" type="0" notNull="false" size="11" />
+		<field name="storeId" column="store_id" type="0" notNull="false" size="11" />
+		<field name="qty" column="qty" type="7" notNull="false" size="0" />
+		<field name="unitId" column="unit_id" type="0" notNull="false" size="11" />
+		<field name="unitPrice" column="unit_price" type="7" notNull="false" size="0" />
+		<field name="totalPrice" column="total_price" type="7" notNull="false" size="0" />
+	</class>
+	<class name="ItemBarcode" table="item_barcode">
+		<field name="itemBarcodeId" column="item_barcode_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="itemId" column="item_id" type="0" notNull="true" size="11" />
+		<field name="itemBarcode" column="item_barcode" type="2" notNull="false" size="145" />
+	</class>
+	<class name="ItemBrand" table="item_brand">
+		<field name="itemBrandId" column="item_brand_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="itemBrandName" column="item_brand_name" type="2" notNull="false" size="145" />
+	</class>
+	<class name="ItemCategory" table="item_category">
+		<field name="itemCategoryId" column="item_category_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="itemCategoryPath" column="item_category_path" type="2" notNull="true" size="80" />
+		<field name="itemCategoryName" column="item_category_name" type="2" notNull="true" size="145" />
+	</class>
+	<class name="ItemForm" table="item_form">
+		<field name="itemFormId" column="item_form_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="itemFormName" column="item_form_name" type="2" notNull="false" size="145" />
+	</class>
+	<class name="ItemLocation" table="item_location">
+		<field name="itemLocationId" column="item_location_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="itemId" column="item_id" type="0" notNull="true" size="11" />
+		<field name="storeId" column="store_id" type="0" notNull="true" size="11" />
+		<field name="location" column="location" type="2" notNull="false" size="145" />
+	</class>
+	<class name="ItemSupplier" table="item_supplier">
+		<field name="itemSupplierId" column="item_supplier_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="itemId" column="item_id" type="0" notNull="false" size="11" />
+		<field name="supplierId" column="supplier_id" type="0" notNull="false" size="11" />
+	</class>
+	<class name="ItemTrans" table="item_trans">
+		<field name="itemTransId" column="item_trans_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="docDate" column="doc_date" type="4" notNull="false" size="0" />
+		<field name="docNo" column="doc_no" type="2" notNull="false" size="15" />
+		<field name="entityTypeId" column="entity_type_id" type="0" notNull="false" size="11" />
+		<field name="entityId" column="entity_id" type="0" notNull="false" size="11" />
+		<field name="accountId" column="account_id" type="0" notNull="false" size="11" />
+		<field name="qtyIn" column="qty_in" type="7" notNull="false" size="0" />
+		<field name="qtyOut" column="qty_out" type="7" notNull="false" size="0" />
+		<field name="costIn" column="cost_in" type="7" notNull="false" size="0" />
+		<field name="costOut" column="cost_out" type="7" notNull="false" size="0" />
+		<field name="totalCostIn" column="total_cost_in" type="7" notNull="false" size="0" />
+		<field name="totalCostOut" column="total_cost_out" type="7" notNull="false" size="0" />
+		<field name="flag" column="flag" type="0" notNull="false" size="11" />
+		<one name="account" column="store_id" type="0" notNull="false" size="11" refTable="account" refColumn="account_id" />
+		<one name="item" column="item_id" type="0" notNull="false" size="11" refTable="item" refColumn="item_id" />
+		<one name="unit" column="unit_id" type="0" notNull="false" size="11" refTable="unit" refColumn="unit_id" />
+	</class>
+	<class name="Order" table="order">
+		<field name="orderId" column="order_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="storeId" column="store_id" type="0" notNull="false" size="11" />
+		<field name="cashAccountId" column="cash_account_id" type="0" notNull="false" size="11" />
+		<field name="paymentTypeId" column="payment_type_id" type="0" notNull="false" size="11" />
+		<field name="docDate" column="doc_date" type="4" notNull="true" size="0" />
+		<field name="docNo" column="doc_no" type="2" notNull="true" size="15" />
+		<field name="memo" column="memo" type="2" notNull="false" size="255" />
+		<field name="supplierName" column="supplier_name" type="2" notNull="false" size="255" />
+		<field name="entityTypeId" column="entity_type_id" type="0" notNull="false" size="11" />
+		<field name="itemTotal" column="item_total" type="7" notNull="false" size="0" />
+		<field name="discountPer" column="discount_per" type="7" notNull="false" size="0" />
+		<field name="discountValue" column="discount_value" type="7" notNull="false" size="0" />
+		<field name="taxPer" column="tax_per" type="7" notNull="false" size="0" />
+		<field name="taxValue" column="tax_value" type="7" notNull="false" size="0" />
+		<field name="grandTotal" column="grand_total" type="7" notNull="false" size="0" />
+		<field name="createdAt" column="created_at" type="4" notNull="false" size="0" />
+		<field name="createdBy" column="created_by" type="0" notNull="false" size="11" />
+		<field name="updatedAt" column="updated_at" type="4" notNull="false" size="0" />
+		<field name="updatedBy" column="updated_by" type="0" notNull="false" size="11" />
+		<field name="flag" column="flag" type="0" notNull="false" size="11" />
+		<one name="account" column="account_id" type="0" notNull="true" size="11" refTable="account" refColumn="account_id" />
+	</class>
+	<class name="OrderDetail" table="order_detail">
+		<field name="orderDetailId" column="order_detail_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="qty" column="qty" type="7" notNull="false" size="0" />
+		<field name="unitId" column="unit_id" type="0" notNull="false" size="11" />
+		<field name="expiryDate" column="expiry_date" type="1" notNull="false" size="0" />
+		<field name="batchNo" column="batch_no" type="2" notNull="false" size="30" />
+		<field name="price" column="price" type="7" notNull="false" size="0" />
+		<field name="lineTotal" column="line_total" type="7" notNull="false" size="0" />
+		<field name="flag" column="flag" type="0" notNull="true" size="11" />
+		<one name="order" column="order_id" type="0" notNull="true" size="11" refTable="order" refColumn="order_id" />
+		<one name="item" column="item_id" type="0" notNull="true" size="11" refTable="item" refColumn="item_id" />
+	</class>
+	<class name="Payment" table="payment">
+		<field name="paymentId" column="payment_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="entityTypeId" column="entity_type_id" type="0" notNull="true" size="11" />
+		<field name="repId" column="rep_id" type="0" notNull="false" size="11" />
+		<field name="docNo" column="doc_no" type="2" notNull="false" size="45" />
+		<field name="docDate" column="doc_date" type="4" notNull="false" size="0" />
+		<field name="memo" column="memo" type="2" notNull="false" size="245" />
+		<field name="total" column="total" type="7" notNull="false" size="0" />
+		<field name="createdBy" column="created_by" type="0" notNull="false" size="11" />
+		<field name="createdAt" column="created_at" type="4" notNull="false" size="0" />
+		<field name="updateBy" column="update_by" type="0" notNull="false" size="11" />
+		<field name="updatedAt" column="updated_at" type="4" notNull="false" size="0" />
+	</class>
+	<class name="PaymentDetail" table="payment_detail">
+		<field name="paymentDetailId" column="payment_detail_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="entityTypeId" column="entity_type_id" type="0" notNull="true" size="11" />
+		<field name="debitAccountId" column="debit_account_id" type="0" notNull="true" size="11" />
+		<field name="creditAccountId" column="credit_account_id" type="0" notNull="true" size="11" />
+		<field name="memo" column="memo" type="2" notNull="false" size="245" />
+		<field name="amount" column="amount" type="7" notNull="true" size="0" />
+		<one name="payment" column="payment_id" type="0" notNull="true" size="11" refTable="payment" refColumn="payment_id" />
+		<one name="paymentState" column="payment_state_id" type="0" notNull="true" size="11" refTable="payment_state" refColumn="payment_state_id" />
+	</class>
+	<class name="PaymentState" table="payment_state">
+		<field name="paymentStateId" column="payment_state_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="paymentStateName" column="payment_state_name" type="2" notNull="false" size="45" />
+		<field name="paymentStateNameAr" column="payment_state_name_ar" type="2" notNull="false" size="45" />
+		<field name="flag" column="flag" type="0" notNull="false" size="11" />
+	</class>
+	<class name="PaymentTrans" table="payment_trans">
+		<field name="transId" column="trans_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="debitAccountId" column="debit_account_id" type="0" notNull="false" size="11" />
+		<field name="creditAccountId" column="credit_account_id" type="0" notNull="false" size="11" />
+		<field name="createdBy" column="created_by" type="0" notNull="false" size="11" />
+		<field name="createdAt" column="created_at" type="4" notNull="false" size="0" />
+		<one name="paymentDetail" column="payment_detail_id" type="0" notNull="false" size="11" refTable="payment_detail" refColumn="payment_detail_id" />
+		<one name="paymentState" column="payment_state_id" type="0" notNull="false" size="11" refTable="payment_state" refColumn="payment_state_id" />
+	</class>
+	<class name="PaymentType" table="payment_type">
+		<field name="paymentTypeId" column="payment_type_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="paymentTypeName" column="payment_type_name" type="2" notNull="false" size="45" />
+		<field name="paymentTypeNameAr" column="payment_type_name_ar" type="2" notNull="false" size="45" />
+		<field name="flag" column="flag" type="0" notNull="true" size="11" />
+	</class>
+	<class name="Report" table="report">
+		<field name="reportId" column="report_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="moduleName" column="module_name" type="2" notNull="false" size="45" />
+		<field name="reportName" column="report_name" type="6" notNull="false" size="0" />
+		<field name="reportSys" column="report_sys" type="0" notNull="false" size="1" />
+		<field name="reportSource" column="report_source" type="6" notNull="false" size="0" />
+		<field name="reportDescrip" column="report_descrip" type="6" notNull="false" size="0" />
+		<field name="reportGrade" column="report_grade" type="0" notNull="false" size="11" />
+		<field name="reportLoaddate" column="report_loaddate" type="1" notNull="false" size="0" />
+		<field name="reportVersion" column="report_version" type="2" notNull="false" size="45" />
+	</class>
+	<class name="Stock" table="stock">
+		<field name="stockId" column="stock_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="entityTypeId" column="entity_type_id" type="0" notNull="false" size="11" />
+		<field name="fromAccountId" column="from_account_id" type="0" notNull="false" size="11" />
+		<field name="toAccountId" column="to_account_id" type="0" notNull="false" size="11" />
+		<field name="docDate" column="doc_date" type="4" notNull="false" size="0" />
+		<field name="docNo" column="doc_no" type="2" notNull="false" size="15" />
+		<field name="memo" column="memo" type="2" notNull="false" size="255" />
+		<field name="createdAt" column="created_at" type="4" notNull="false" size="0" />
+		<field name="createdBy" column="created_by" type="0" notNull="false" size="11" />
+		<field name="updatedAt" column="updated_at" type="4" notNull="false" size="0" />
+		<field name="updatedBy" column="updated_by" type="0" notNull="false" size="11" />
+		<field name="flag" column="flag" type="0" notNull="false" size="11" />
+	</class>
+	<class name="StockDetail" table="stock_detail">
+		<field name="stockDetailId" column="stock_detail_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="qty" column="qty" type="7" notNull="false" size="0" />
+		<field name="unitId" column="unit_id" type="0" notNull="false" size="11" />
+		<field name="expiryDate" column="expiry_date" type="1" notNull="false" size="0" />
+		<field name="flag" column="flag" type="0" notNull="false" size="11" />
+		<one name="stock" column="stock_id" type="0" notNull="false" size="11" refTable="stock" refColumn="stock_id" />
+		<one name="item" column="item_id" type="0" notNull="false" size="11" refTable="item" refColumn="item_id" />
+	</class>
+	<class name="Unit" table="unit">
+		<field name="unitId" column="unit_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="unitName" column="unit_name" type="2" notNull="false" size="45" />
+		<field name="baseQty" column="base_qty" type="7" notNull="false" size="0" />
+		<field name="isBase" column="is_base" type="2" notNull="false" size="1" />
+		<one name="unitGroup" column="unit_group_id" type="0" notNull="false" size="11" refTable="unit_group" refColumn="unit_group_id" />
+	</class>
+	<class name="UnitGroup" table="unit_group">
+		<field name="unitGroupId" column="unit_group_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="unitGroupName" column="unit_group_name" type="2" notNull="false" size="145" />
+		<field name="baseUnitName" column="base_unit_name" type="2" notNull="false" size="45" />
+	</class>
+	<class name="Voucher" table="voucher">
+		<field name="voucherId" column="voucher_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="docNo" column="doc_no" type="2" notNull="false" size="45" />
+		<field name="docDate" column="doc_date" type="4" notNull="false" size="0" />
+		<field name="memo" column="memo" type="2" notNull="false" size="245" />
+		<field name="entityId" column="entity_id" type="0" notNull="false" size="11" />
+		<field name="entityTypeId" column="entity_type_id" type="0" notNull="false" size="11" />
+		<field name="createdBy" column="created_by" type="2" notNull="false" size="45" />
+		<field name="createdAt" column="created_at" type="2" notNull="false" size="45" />
+		<field name="updatedBy" column="updated_by" type="2" notNull="false" size="45" />
+		<field name="updatedAt" column="updated_at" type="2" notNull="false" size="45" />
+		<field name="flag" column="flag" type="0" notNull="true" size="11" />
+	</class>
+	<class name="VoucherDetail" table="voucher_detail">
+		<field name="voucherDetailId" column="voucher_detail_id" type="0" notNull="true" size="11" primaryKey="true" autoIncrement="true" />
+		<field name="accountPath" column="account_path" type="2" notNull="false" size="45" />
+		<field name="debit" column="debit" type="7" notNull="false" size="0" />
+		<field name="credit" column="credit" type="7" notNull="false" size="0" />
+		<field name="flag" column="flag" type="0" notNull="true" size="11" />
+		<one name="voucher" column="voucher_id" type="0" notNull="false" size="11" refTable="voucher" refColumn="voucher_id" />
+		<one name="account" column="account_id" type="0" notNull="false" size="11" refTable="account" refColumn="account_id" />
+	</class>
+</mappings>

@@ -1,0 +1,41 @@
+{
+  "name": "hapi-ember-data",
+  "description": "hapi plugin that generate ember data API using a defined XML schema",
+  "author": "Yasir Hantoush",
+  "version": "0.0.1",
+  "repository": "git://github.com/yasirhantoush/hapi-ember-data",
+  "main": "index",
+  "license": "MIT",
+  "keywords": [
+    "hapi",
+    "ember",
+	"ember data",
+	"RESTAdapter"
+  ],
+  "engines": {
+    "node": ">=0.10.33"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "hapi": "~8.0.0-rc9",
+    "boom": "~2.6.1",
+    "joi": "~5.0.2",
+    "knex": "~0.7.3",
+    "lodash": "~2.4.1",
+    "mysql": "~2.5.3",
+    "string": "^3.0.0",
+    "when": "~3.6.3",
+    "xml2js": "~0.4.4"
+  },
+  "peerDependencies": {
+    "hapi": ">=8.x.x"
+  },
+  "devDependencies": {
+    "hapi": "^8.0.0",
+    "joi": "^5.0.2",
+    "lab": "^5.1.1",
+    "code": "~1.2.1"
+  }
+}

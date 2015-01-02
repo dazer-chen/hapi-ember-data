@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Document created by: Yasir, Mango Massss -->
+<mappings>
+	<class name="Account" table="account" plural="accounts">
+		<field name="accountId" 		column="account_id" 		type="INT" notNull="true" size="11" primaryKey="true" autoIncrement="true"/>
+		<field name="entityTypeId" 		column="entity_type_id" 	type="INT" notNull="false" size="11"/>
+		<field name="accountNo" 		column="account_no" 		type="VARCHAR" notNull="true" size="45"  searchable="true" filterable="true"/>
+		<field name="accountName" 		column="account_name" 		type="VARCHAR" notNull="true" size="45"  searchable="true" filterable="true"/>
+		<field name="accountPath" 		column="account_path" 		type="VARCHAR" notNull="true" size="45"  filterable="true"/>
+		<field name="balanceDebit" 		column="balance_debit" 		type="FLOAT" notNull="false" size="0"/>
+		<field name="balanceCredit" 	column="balance_credit" 	type="FLOAT" notNull="false" size="0"/>
+		<field name="totalDebit" 		column="total_debit" 		type="FLOAT" notNull="false" size="0"/>
+		<field name="totalCredit" 		column="total_credit" 		type="FLOAT" notNull="false" size="0"/>
+		<field name="totalBalance" 		column="total_balance" 		type="FLOAT" notNull="false" size="0"/>
+		<field name="note" 				column="note" 				type="TEXT" notNull="false" size="0" searchable="true" filterable="true"/>
+		<field name="flag" 				column="flag" 				type="INT" notNull="true" size="11"  filterable="true" />
+		<one   name="accountType" 		column="account_type_id" 	type="INT" notNull="false" size="11" refTable="account_type" refColumn="account_type_id" filterable="true"/>
+	</class>
+	<class name="AccountType" table="account_type" plural="accountTypes">
+		<field name="accountTypeId" column="account_type_id" type="INT" notNull="true" size="11" primaryKey="true" autoIncrement="true"/>
+		<field name="accountTypeName" column="account_type_name" type="VARCHAR" notNull="false" size="145"/>
+		<field name="balanceType" column="balance_type" type="VARCHAR" notNull="false" size="45"/>
+	</class>
+	<class name="Voucher" table="voucher" plural="vouchers">
+		<field name="voucherId" column="voucher_id" type="INT" notNull="true" size="11" primaryKey="true" autoIncrement="true"/>
+		<field name="docNo" column="doc_no" type="VARCHAR" notNull="false" size="45"/>
+		<field name="docDate" column="doc_date" type="DATETIME" notNull="false" size="0"/>
+		<field name="memo" column="memo" type="VARCHAR" notNull="false" size="245"/>
+		<field name="entityId" column="entity_id" type="INT" notNull="false" size="11"/>
+		<field name="entityTypeId" column="entity_type_id" type="INT" notNull="false" size="11"/>
+		<field name="createdBy" column="created_by" type="VARCHAR" notNull="false" size="45"/>
+		<field name="createdAt" column="created_at" type="VARCHAR" notNull="false" size="45"/>
+		<field name="updatedBy" column="updated_by" type="VARCHAR" notNull="false" size="45"/>
+		<field name="updatedAt" column="updated_at" type="VARCHAR" notNull="false" size="45"/>
+		<field name="flag" column="flag" type="INT" notNull="true" size="11"/>
+	</class>
+	<class name="VoucherDetail" table="voucher_detail" plural="voucherDetails">
+		<field name="voucherDetailId" column="voucher_detail_id" type="INT" notNull="true" size="11" primaryKey="true" autoIncrement="true"/>
+		<field name="accountPath" column="account_path" type="VARCHAR" notNull="false" size="45"/>
+		<field name="debit" column="debit" type="FLOAT" notNull="false" size="0"/>
+		<field name="credit" column="credit" type="FLOAT" notNull="false" size="0"/>
+		<field name="flag" column="flag" type="INT" notNull="true" size="11"/>
+		<one name="voucher" column="voucher_id" type="INT" notNull="false" size="11" refTable="voucher" refColumn="voucher_id"/>
+		<one name="account" column="account_id" type="INT" notNull="false" size="11" refTable="account" refColumn="account_id"/>
+	</class>
+</mappings>
