@@ -9,8 +9,8 @@
   "keywords": [
     "hapi",
     "ember",
-	"ember data",
-	"RESTAdapter"
+    "ember data",
+    "RESTAdapter"
   ],
   "engines": {
     "node": ">=0.10.33"
@@ -27,7 +27,8 @@
     "mysql": "~2.5.3",
     "string": "^3.0.0",
     "when": "~3.6.3",
-    "xml2js": "~0.4.4"
+    "xml2js": "~0.4.4",
+    "bluebird": "^2.6.2"
   },
   "peerDependencies": {
     "hapi": ">=8.x.x"

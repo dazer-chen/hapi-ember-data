@@ -1,37 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Document created by: Yasir -->
+<!--Document created by: Yasir, Mango Massss -->
 <mappings>
-	<class name="Category" plural="categories">
-		<field name="categoryName" 			column="account_id" 		type="int" notNull="true" size="11" primaryKey="true" autoIncrement="true"/>
-		<field name="categoryDescription" 	column="entity_type_id" 	type="int" notNull="false" size="11"/>
+	<class name="Account" table="account" plural="accounts">
+		<field name="accountId" 		column="account_id" 		type="int" notNull="true" size="11" primaryKey="true" autoIncrement="true"/>
+		<field name="entityTypeId" 		column="entity_type_id" 	type="int" notNull="false" size="11"/>
+		<field name="accountNo" 		column="account_no" 		type="string" notNull="true" size="45"  searchable="true" filterable="true" index="true" unique="true"/>
+		<field name="accountName" 		column="account_name" 		type="string" notNull="true" size="45"  searchable="true" filterable="true"/>
+		<field name="accountPath" 		column="account_path" 		type="string" notNull="true" size="45"  filterable="true" insert="false" update="false"/>
+		<field name="balanceDebit" 		column="balance_debit" 		type="float" notNull="false" />
+		<field name="balanceCredit" 	column="balance_credit" 	type="float" notNull="false" />
+		<field name="totalDebit" 		column="total_debit" 		type="float" notNull="false" />
+		<field name="totalCredit" 		column="total_credit" 		type="float" notNull="false" />
+		<field name="totalBalance" 		column="total_balance" 		type="float" notNull="false" />
+		<field name="note" 				column="note" 				type="text" notNull="false" searchable="true" filterable="true"/>
+		<field name="flag" 				column="flag" 				type="int" notNull="true" size="11"  filterable="true"/>
+		<one   name="accountType" 		column="account_type_id" 	type="int" notNull="false" size="11" refTable="account_type" refColumn="account_type_id" filterable="true"/>
+		<field name="parentPath"		type="string" 				select="false" insert="false" update="false" />
 	</class>
-	<class name="Item" plural="items">
-		<field name="itemNo" 		column="account_type_id" type="int" notNull="true" size="11" primaryKey="true" autoIncrement="true"/>
-		<field name="itemName" 		column="account_type_name" type="string" notNull="false" size="145"/>
-		<field name="unit" 			column="balance_type" type="string" notNull="false" size="45"/>
-		<field name="price" 		column="balance_type" type="string" notNull="false" size="45"/>
+	<class name="AccountType" table="account_type" plural="accountTypes">
+		<field name="accountTypeId" column="account_type_id" type="int" notNull="true" size="11" primaryKey="true" autoIncrement="true"/>
+		<field name="accountTypeName" column="account_type_name" type="string" notNull="false" size="145"/>
+		<field name="balanceType" column="balance_type" type="string" notNull="false" size="45"/>
 	</class>
-	<class name="User" plural="users">
-		<field name="username" 		column="voucher_id" type="int" notNull="true" size="11" primaryKey="true" autoIncrement="true"/>
-		<field name="email" 		column="doc_date" type="DATETIME" notNull="false" size="0"/>
-		<field name="password" 		column="doc_no" type="string" notNull="false" size="45"/>
-		<field name="createdAt" 	column="memo" type="string" notNull="false" size="245"/>
-		<field name="isActive" 		column="flag" type="int" notNull="true" size="11"/>
-		<field name="isSuperAdmin" 	column="flag" type="int" notNull="true" size="11"/>
+	<class name="Voucher" table="voucher" plural="vouchers">
+		<field name="voucherId" column="voucher_id" type="int" notNull="true" size="11" primaryKey="true" autoIncrement="true"/>
+		<field name="docNo" column="doc_no" type="string" notNull="false" size="45"/>
+		<field name="docDate" column="doc_date" type="DATETIME" notNull="false" size="0"/>
+		<field name="memo" column="memo" type="string" notNull="false" size="245"/>
+		<field name="entityId" column="entity_id" type="int" notNull="false" size="11"/>
+		<field name="entityTypeId" column="entity_type_id" type="int" notNull="false" size="11"/>
+		<field name="createdBy" column="created_by" type="string" notNull="false" size="45"/>
+		<field name="createdAt" column="created_at" type="string" notNull="false" size="45"/>
+		<field name="updatedBy" column="updated_by" type="string" notNull="false" size="45"/>
+		<field name="updatedAt" column="updated_at" type="string" notNull="false" size="45"/>
+		<field name="flag" column="flag" type="int" notNull="true" size="11"/>
 	</class>
-	<class name="Invoice" plural="invoices">
-		<field name="invoiceNo"		column="voucher_detail_id" type="int" notNull="true" size="11" primaryKey="true" autoIncrement="true"/>
-		<field name="invoiceDate" 	column="account_path" type="string" notNull="false" size="45"/>
-		<field name="memo" 			column="debit" type="float" notNull="false" size="0"/>
-		<field name="createdAt" 	column="credit" type="float" notNull="false" size="0"/>
-		<one name="createdBy" 		column="voucher_id" type="int" notNull="false" size="11" refTable="voucher" refColumn="voucher_id"/>
-		<field name="updatedAt" 	column="flag" type="int" notNull="true" size="11"/>
-		<one name="updatedBy" 		column="account_id" type="int" notNull="false" size="11" refTable="account" refColumn="account_id"/>
-	</class>
-	<class name="InvoiceLine" plural="invoiceLines">
-		<field name="invoice" 		column="voucher_detail_id" type="int" notNull="true" size="11" primaryKey="true" autoIncrement="true"/>
-		<field name="qty" 			column="debit" type="float" notNull="false" size="0"/>
-		<field name="price" 		column="credit" type="float" notNull="false" size="0"/>
-		<field name="lineTotal" 	column="credit" type="float" notNull="false" size="0"/>
+	<class name="VoucherDetail" table="voucher_detail" plural="voucherDetails">
+		<field name="voucherDetailId" column="voucher_detail_id" type="int" notNull="true" size="11" primaryKey="true" autoIncrement="true"/>
+		<field name="accountPath" column="account_path" type="string" notNull="false" size="45"/>
+		<field name="debit" column="debit" type="float" notNull="false" size="0"/>
+		<field name="credit" column="credit" type="float" notNull="false" size="0"/>
+		<field name="flag" column="flag" type="int" notNull="true" size="11"/>
+		<one name="voucher" column="voucher_id" type="int" notNull="false" size="11" refTable="voucher" refColumn="voucher_id"/>
+		<one name="account" column="account_id" type="int" notNull="false" size="11" refTable="account" refColumn="account_id"/>
 	</class>
 </mappings>
